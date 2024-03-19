@@ -101,6 +101,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'AG_Grid')">AG_Grid</button>
 	<button class="myButton" onclick="openCity(event, 'RouteGuard')">RouteGuard</button>
 	<button class="myButton" onclick="openCity(event, 'Copy')">Copy</button>
+	<button class="myButton" onclick="openCity(event, 'MongoDB')">MongoDB</button>
 </div>
   
   <!--<mark></mark>--->
@@ -1179,6 +1180,36 @@ console.log(Object.keys(this.data).length); // 0
 //TODO Emit
  @Output() dataChange : EventEmitter<any> = new EventEmitter()
 this.dataChange.emit()
+</pre>
+</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="MongoDB" class="tabcontent">
+<pre>
+let koo = await lastValueFrom(this.api.BomList_UpdateBigData(this.rowData))
+	
+router.post("/updateBigData/", async function (req, res, next) {
+  const payload = req.body;
+  const formUpdate = payload.map(d => {
+    if (d._id) {
+      return {
+        updateMany: {
+          filter: { _id: new ObjectId(d._id) },
+          update: { $set: d },
+        },
+      }
+    } else {
+      return {
+        insertOne: {
+          document: d
+        }
+      }
+    }
+  })
+  const resultUpdate = await PM_ISSUE.bulkWrite(formUpdate)
+	
+  res.json({});
+});
+
 </pre>
 </div>
 
