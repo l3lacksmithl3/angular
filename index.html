@@ -1338,6 +1338,57 @@ onFilterChanged: (data: any) => {
       // this.gridOptions.api.getDisplayedRowCount()
       data.api!.applyTransaction(dateFilter);
     },
+//TODO 
+gridOptions: any = {
+    accentedSort: true,
+    rowSelection: 'multiple',
+    headerHeight: 22,
+    defaultColDef: {
+      lockPinned: true,
+      filter: true,
+      floatingFilter: true,
+      floatingFilterComponentParams: {
+        suppressFilterButton: true,
+      },
+      suppressMovable: true,
+
+    },
+
+    onFilterChanged: (data: any) => {
+      let dateFilter: any = [];
+      data.api.forEachNodeAfterFilterAndSort((node: any, index: any) => {
+        node.data.No = index + 1;
+        dateFilter.push(node.data);
+      });
+      let loo = this.grid.api?.getDisplayedRowCount();
+      this.refresh(dateFilter)
+    },
+
+    <mark>pinnedBottomRowData: [{}]</mark>
+  }
+
+	  refresh(e: any) {
+
+    let data = e.filter((d: any) => d.value.length != 0)
+
+    if (e.length != 0) {
+      for (const [index, item] of e[0].value.entries()) {
+        let name_head = `${moment(item.data.split(' / ')[1].split('月')[0].split('年')[1]).format('MMM')}-${moment(item.data.split(' / ')[1].split('月')[0].split('年')[0]).format('YY')}`
+        // console.log(index);
+        // console.log(name_head);
+        // console.log(e.reduce((a:any,b:any)=>a+b?.value[index].value,0));
+
+        // this.gridOptions.pinnedBottomRowData[name_head] = Math.random()
+      }
+    }
+
+    this.gridOptions.pinnedBottomRowData[0]['Oct-23'] = Math.random();
+    this.gridOptions.pinnedBottomRowData[0]['Nov-23'] = Math.random();
+    this.grid.api.redrawRows()
+    this.grid.api.refreshCells()
+
+
+  }
 </pre>
 </div>
 
