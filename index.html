@@ -102,6 +102,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'RouteGuard')">RouteGuard</button>
 	<button class="myButton" onclick="openCity(event, 'Copy')">Copy</button>
 	<button class="myButton" onclick="openCity(event, 'MongoDB')">MongoDB</button>
+	<button class="myButton" onclick="openCity(event, 'Number')">Number</button>
 </div>
   
   <!--<mark></mark>--->
@@ -1458,6 +1459,31 @@ scrollToElement(point:any) {
 #targetElement1
 //TODO use
 (click)="scrollToElement(3)"
+
+</pre>
+</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="Number" class="tabcontent">
+<pre>
+ let list = [
+      "0.00000000",
+      "0.0000000",
+      "0.000000",
+      "0.00000",
+      "0.0000",
+      "0.000",
+      "0.00",
+      "0.0",
+      "0.",
+    ]
+    let regex = 0
+    for (const item of list) {
+      regex = regex + 1
+      if (value?.split(item).length > 1) {
+	break
+      }
+    }
+    return regex == 9 ? value : Number(value).toFixed(9 - regex + 3)
 
 </pre>
 </div>
