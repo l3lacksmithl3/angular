@@ -103,6 +103,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'Copy')">Copy</button>
 	<button class="myButton" onclick="openCity(event, 'MongoDB')">MongoDB</button>
 	<button class="myButton" onclick="openCity(event, 'Number')">Number</button>
+	<button class="myButton" onclick="openCity(event, 'Date')">Date</button>
 </div>
   
   <!--<mark></mark>--->
@@ -1463,6 +1464,16 @@ scrollToElement(point:any) {
 </pre>
 </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="Date" class="tabcontent">
+<pre>
+//TODO convert_time
+date : new Date(moment(d.date).add(7,'hour').format()).toISOString()
+
+</pre>
+</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+
+	
 <div id="Number" class="tabcontent">
 <pre>
  let list = [
