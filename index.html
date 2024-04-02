@@ -104,10 +104,11 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'MongoDB')">MongoDB</button>
 	<button class="myButton" onclick="openCity(event, 'Number')">Number</button>
 	<button class="myButton" onclick="openCity(event, 'Date')">Date</button>
+	<button class="myButton" onclick="openCity(event, 'Autocomplete')">Autocomplete</button>
 </div>
   
   <!--<mark></mark>--->
-  
+
 
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
@@ -1471,6 +1472,46 @@ date : new Date(moment(d.date).add(7,'hour').format()).toISOString()
 
 </pre>
 </div>
+	
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="Autocomplete" class="tabcontent">
+<pre>
+//TODO 
+&lt;mat-form-field appearance="outline" floatLabel="always" class="setFormat">
+  &lt;mat-label>Customer&lt;/mat-label>
+  &lt;input type="text" matInput style="text-align: center;" [matAutocomplete]="auto_3"
+    [(ngModel)]="rawData['Customer']">
+  &lt;mat-autocomplete #auto_3="matAutocomplete">
+    &lt;mat-option *ngFor="let option of filterOptions(rawData['Customer'],customer)" [value]="option.list">
+      {{option.list}}
+    &lt;/mat-option>
+  &lt;/mat-autocomplete>
+&lt;/mat-form-field>
+
+
+
+customer: any = {}
+rawData: any = {}
+	
+this.rawData.Customer = ''
+    this.customer = [
+      {
+        list: "111"
+      },
+      {
+        list: "222"
+      }
+    ]
+	
+filterOptions(list: string, data: any) {
+    const filterValue = list?.toLowerCase();
+    return data.filter((option: any) => option?.list?.toLowerCase().includes(filterValue));
+  }
+	
+	
+</pre>
+</div>
+
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 
 	
