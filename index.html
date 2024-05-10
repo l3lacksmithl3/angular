@@ -105,6 +105,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'Number')">Number</button>
 	<button class="myButton" onclick="openCity(event, 'Date')">Date</button>
 	<button class="myButton" onclick="openCity(event, 'Autocomplete')">Autocomplete</button>
+	<button class="myButton" onclick="openCity(event, 'Echart')">Echart</button>
 </div>
   
   <!--<mark></mark>--->
@@ -510,6 +511,42 @@ setInterval(()=>{
 
 </pre>
 </div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="Echart" class="tabcontent">
+<pre>
+//TODO 
+	xAxis: [
+        {
+          type: 'category',
+          data: [1,2,3,4,5,6,7,8,9,10,11,12,13,14],
+          position: 'top',
+          axisLabel: {
+            color: '#333',
+            rotate: 0,
+            interval: 0,
+            formatter: function (value: any) {
+              return [
+                '{a|1 day}',
+                '{b|before}'
+              ].join('\n');
+            },
+            rich: {
+              a: {
+                color: 'blue',
+                fontSize: 6
+              },
+              b: {
+                color: 'red',
+                fontSize: 6
+              }
+            }
+          },
+          gridIndex: 1 // ระบุให้ xAxis นี้ใช้ grid ที่ 1
+        }
+      ]
+</pre>
+</div>
+	    
 
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
