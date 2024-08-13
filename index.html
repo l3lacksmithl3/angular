@@ -107,6 +107,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'Autocomplete')">Autocomplete</button>
 	<button class="myButton" onclick="openCity(event, 'Echart')">Echart</button>
 	<button class="myButton" onclick="openCity(event, 'PrimeNG')">PrimeNG</button>
+	<button class="myButton" onclick="openCity(event, 'HTML')">HTML</button>
 </div>
   
   <!--<mark></mark>--->
@@ -1618,6 +1619,23 @@ filterOptions(list: string, data: any) {
       }
     }
     return regex == 9 ? value : Number(value).toFixed(9 - regex + 3)
+
+</pre>
+</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="HTML" class="tabcontent">
+<pre>
+div class="grid-container"
+      div class="grid-item">1</div
+      div class="grid-item">2</div
+      div class="grid-item">3</div
+/div
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: repeat(2, 1fr);    /* 2 rows */
+  gap: 10px; /* Optional: gap between items */
+}
 
 </pre>
 </div>
