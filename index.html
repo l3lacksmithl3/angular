@@ -108,6 +108,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'Echart')">Echart</button>
 	<button class="myButton" onclick="openCity(event, 'PrimeNG')">PrimeNG</button>
 	<button class="myButton" onclick="openCity(event, 'HTML')">HTML</button>
+	<button class="myButton" onclick="openCity(event, 'PDF')">PDF</button>
 </div>
   
   <!--<mark></mark>--->
@@ -1636,6 +1637,94 @@ filterOptions(list: string, data: any) {
   grid-template-rows: repeat(2, 1fr);    /* 2 rows */
   gap: 10px; /* Optional: gap between items */
 }`
+
+</pre>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="PDF" class="tabcontent">
+<pre>
+npm install jspdf --save
+npm install --save html2canvas
+import { jsPDF } from "jspdf";
+import html2canvas from 'html2canvas';
+id="print"
+
+//TODO TS.
+generatePDF(name: string) {
+    try {
+      setTimeout(async () => {
+        const div: any = document.querySelectorAll('#print');
+        const options = {
+          background: 'white',
+          scale: 3,
+        };
+        var doc: any = new jsPDF('l', 'mm', [75, 50.8]);
+        // doc.setPageSize(51,24)
+        for (let index = 0; index < div.length; index++) {
+          const d = div[index];
+          const can = await html2canvas(d, options)
+          let img = can.toDataURL('image/PNG');
+          const bufferX = 0;
+          const bufferY = 0;
+          const imgProps = (<any>doc).getImageProperties(img);
+          const pdfWidth = doc.internal.pageSize.getWidth() - 2 * bufferX;
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+          if (div.length === 1) {
+            doc = await doc.addImage(
+              img,
+              'PNG',
+              bufferX,
+              bufferY,
+              pdfWidth,
+              pdfHeight,
+              undefined,
+              'FAST'
+            );
+            await doc.save(`${name}.pdf`);
+            // this.router.navigate(['user/print'])
+          } else {
+            if (index === 0) {
+              doc = await doc.addImage(
+                img,
+                'PNG',
+                bufferX,
+                bufferY,
+                pdfWidth,
+                pdfHeight,
+                undefined,
+                'FAST'
+              );
+            } else {
+              doc = await doc.addPage('l');
+              doc = await doc.addImage(
+                img,
+                'PNG',
+                bufferX,
+                bufferY,
+                pdfWidth,
+                pdfHeight,
+                undefined,
+                'FAST'
+              );
+              if (index + 1 === div.length) {
+                await doc.save(`${name}.pdf`);
+                // this.router.navigate(['user/print'])
+              }
+            }
+          }
+
+
+
+        }
+      }, 300);
+    } catch (error) {
+      console.log("🚀 ~ error:", error)
+
+    }
+
+  }
 
 </pre>
 </div>
