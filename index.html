@@ -233,6 +233,9 @@ let loo = this.employee.filter((d: any) => ["TH0286/14", "TH0289/14", "TH0297/14
 or
 const licenses = ["กด 3345", "กด 4456", "กด 5567", "กด 6678", "กด 7789"];
 const filteredLicenses = licenses.filter(license => /5/i.test(license));
+or
+const pattern = new RegExp('5', 'i');
+const filteredLicenses = licenses.filter(license => pattern.test(license));
 
 //TODO filter data obj.array
 let beautyProducts = this.stateGroups_1.filter(d => d.names.some(cat => cat.id === 43));
