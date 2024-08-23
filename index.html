@@ -236,6 +236,7 @@ const filteredLicenses = licenses.filter(license => /5/i.test(license));
 or
 const pattern = new RegExp('5', 'i');
 const filteredLicenses = licenses.filter(license => pattern.test(license));
+const filteredData = data.filter(item => pattern.test(item.license));
 
 //TODO filter data obj.array
 let beautyProducts = this.stateGroups_1.filter(d => d.names.some(cat => cat.id === 43));
