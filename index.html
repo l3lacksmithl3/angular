@@ -1634,12 +1634,13 @@ filterOptions(list: string, data: any) {
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="HTML" class="tabcontent">
 <pre>
-`div class="grid-container"
-      div class="grid-item">1</div
-      div class="grid-item">2</div
-      div class="grid-item">3</div
-/div
-.grid-container {
+` class="grid-container"
+       class="grid-item">1</
+       class="grid-item">2</div
+       class="grid-item">3</div
+/
+scss
+grid-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* 3 columns */
   grid-template-rows: repeat(2, 1fr);    /* 2 rows */
