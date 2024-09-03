@@ -1467,6 +1467,13 @@ gridOptions: any = {
 
 
   }
+//TODO
+@ViewChildren('myGrid') grids: QueryList<AgGridAngular>;
+this.grids.forEach((grid, index) => {
+    const pinnedTopRowData = [{ Qty: (index + 1).toString() }];
+    grid.api.setPinnedTopRowData(pinnedTopRowData);
+    grid.api.redrawRows();
+});
 </pre>
 </div>
 
