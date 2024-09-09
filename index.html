@@ -110,7 +110,6 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'HTML')">HTML</button>
 	<button class="myButton" onclick="openCity(event, 'PDF')">PDF</button>
 	<button class="myButton" onclick="openCity(event, 'QR_Code')">QR Code</button>
-	<button class="myButton" onclick="openCity(event, 'NodeJS')">Node</button>
 </div>
   
   <!--<mark></mark>--->
@@ -163,26 +162,7 @@ tableWrapper_2.scrollLeft = tableWrapper_2.scrollWidth - tableWrapper_2.clientWi
 /*#endregion RegionName*/
 </pre>
 </div>
-<!--------------------------------------------------------------------------------------------------------------------------------------------->
-<div id="Text" class="tabcontent">
-<pre>
-router.post("/updateAt/", function (req, res, next) {
-  const payload = req.body;
-  monthly_shipment.findOneAndUpdate(
-    { date: payload.date }, // ค้นหาข้อมูลที่มีฟิลด์ a ตรงกับ payload
-    { $set: payload }, // อัพเดทข้อมูล
-    { upsert: true, new: true }, // ถ้าไม่มีข้อมูลที่ตรงกัน ให้เพิ่มใหม่ และส่งข้อมูลที่อัพเดทแล้วกลับมา
-    (err, result) => {
-      if (err) {
-        res.json(err);
-      } else {
-        res.json(result);
-      }
-    }
-  );
-});
-</pre>
-</div>
+
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="Text" class="tabcontent">
 <pre>
@@ -1152,6 +1132,25 @@ router.post("/sendMail", async function (req, res, next) {
 //     // console.log("Saved!");
 //   });
 
+</pre>
+
+
+<pre>
+router.post("/updateAt/", function (req, res, next) {
+  const payload = req.body;
+  monthly_shipment.findOneAndUpdate(
+    { date: payload.date }, // ค้นหาข้อมูลที่มีฟิลด์ a ตรงกับ payload
+    { $set: payload }, // อัพเดทข้อมูล
+    { upsert: true, new: true }, // ถ้าไม่มีข้อมูลที่ตรงกัน ให้เพิ่มใหม่ และส่งข้อมูลที่อัพเดทแล้วกลับมา
+    (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
 </pre>
 </div>
 
