@@ -110,7 +110,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'HTML')">HTML</button>
 	<button class="myButton" onclick="openCity(event, 'PDF')">PDF</button>
 	<button class="myButton" onclick="openCity(event, 'QR_Code')">QR Code</button>
-	<button class="myButton" onclick="openCity(event, 'Node')">QR Code</button>
+	<button class="myButton" onclick="openCity(event, 'NodeJS')">Node</button>
 </div>
   
   <!--<mark></mark>--->
@@ -483,6 +483,29 @@ chunkArray<T>(array: T[], chunkSize: number): T[][] {
     }
     return result;
   }
+
+			      
+//dup
+ let data: any = [
+{ a: 11, b: 22, c: 55 },
+{ a: 11, b: 22, c: 55 },
+{ a: 22, b: 22, c: 55 }
+];
+
+
+let countMap = data.reduce((item:any ,{a}:any)=>{
+item[a] = (item[a] || 0) + 1
+return item
+},{})
+
+
+data = data.map((d:any)=>{
+return{
+...d,
+dup : countMap[d.a] > 1
+}
+})
+
 </pre>
 </div>
 
