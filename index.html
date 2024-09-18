@@ -75,6 +75,7 @@ mark {
 <body>
 
 <div class="">
+	<button class="myButton" onclick="openCity(event, 'Error')">Error</button>
 	<button class="myButton" onclick="openCity(event, 'Start')">Start</button>
 	<button class="myButton" onclick="openCity(event, 'Text')">Text</button>	
 	<button class="myButton" onclick="openCity(event, 'ngFor')">ngFor</button>
@@ -114,7 +115,11 @@ mark {
   
   <!--<mark></mark>--->
 
-
+<div id="Error" class="tabcontent">
+<pre>
+ลบไฟล์ Node_modules , package-lock , npm i --force	
+</pre>
+</div>	
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="Start" class="tabcontent">
