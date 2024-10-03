@@ -111,6 +111,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'HTML')">HTML</button>
 	<button class="myButton" onclick="openCity(event, 'PDF')">PDF</button>
 	<button class="myButton" onclick="openCity(event, 'QR_Code')">QR Code</button>
+	<button class="myButton" onclick="openCity(event, 'UPLOAD')">UPLOAD</button>
 </div>
   
   <!--<mark></mark>--->
@@ -580,6 +581,53 @@ setInterval(()=>{
  ngOnDestroy(): void { clearInterval(this.interval) }
 
 
+</pre>
+</div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="UPLOAD" class="tabcontent">
+<pre>
+import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { lastValueFrom, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
+//TODO environment
+fileServer: 'http://10.200.90.152:30000/upload/new',
+fileServerDelete: 'http://10.200.90.152:30000/delete',
+
+private fileServer = environment.fileServer;
+private fileServerDelete = environment.fileServerDelete;
+
+constructor(private http: HttpClient) { }
+
+create(data: any): Observable<any> {
+  return this.http.post(`${this.fileServer}`, data);
+}
+delete(data: any): Observable<any> {
+  return this.http.post(`${this.fileServerDelete}`, {path_file: "/MSA/excel/newFileName.txt"});
+}
+
+
+ async del(){
+    let file = {
+      path_file: "/MSA/excel/newFileName.txt"
+    }
+    let del = await lastValueFrom(this.delete(file))
+  }
+
+
+  async co_ll(event: any) {
+    const originalFile = event.target.files[0];
+    const renamedFile = new File([originalFile], 'newFileName.txt', {
+      type: originalFile.type,
+      lastModified: originalFile.lastModified
+    });
+    const formData: FormData = new FormData()
+    let path = "MSA/excel/"
+    formData.append('path', path)
+    formData.append('file', renamedFile)
+    const resFile = await lastValueFrom(this.create(formData))
+  }
 </pre>
 </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
