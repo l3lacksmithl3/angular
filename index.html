@@ -112,6 +112,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'PDF')">PDF</button>
 	<button class="myButton" onclick="openCity(event, 'QR_Code')">QR Code</button>
 	<button class="myButton" onclick="openCity(event, 'UPLOAD')">UPLOAD</button>
+	<button class="myButton" onclick="openCity(event, 'AntDesign')">AntDesign</button>
 </div>
   
   <!--<mark></mark>--->
@@ -583,6 +584,51 @@ setInterval(()=>{
 
 </pre>
 </div>
+	    
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="AntDesign" class="tabcontent">
+<pre>
+//TODO TS
+modalRef!: NzModalRef
+private modal: NzModalService,
+ 
+createTplModal(tplTitle: any, tplContent: any, tplFooter: any): void {
+    this.modalRef = this.modal.create({
+      nzTitle: tplTitle,
+      nzContent: tplContent,
+      nzFooter: tplFooter,
+      nzMaskClosable: false,
+      nzClosable: false,
+      nzOnOk: () => console.log('Click ok')
+    });
+  }
+ 
+//TODO html
+ <button nz-button nzType="primary" (click)="createTplModal(tplTitle, tplContent, tplFooter)">
+    <span>Template</span>
+  </button>
+ 
+  <ng-template #tplContent let-params>
+    <div nz-row>
+      <div nz-col >
+        <label for="" >Select Missionssss</label>
+      </div>
+    </div>
+    <div nz-row>
+      <button nz-button (click)="this.modalRef?.close()">ok</button>
+    </div>
+  </ng-template>
+ 
+  <ng-template #tplTitle>
+    <span>Title Template</span>
+  </ng-template>
+ 
+  <ng-template #tplFooter let-params>
+    <p>ssssssssssssssssssssssssssss</p>
+  </ng-template>
+</pre>
+</div>
+   
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="UPLOAD" class="tabcontent">
 <pre>
