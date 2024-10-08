@@ -248,6 +248,23 @@ let models = ["5PV48150","5PV60250"];
 let regexPattern = models.join("|");
 let regex = new RegExp(regexPattern, 'i');
 let ss = rawdata.filter((d: any) => regex.test(d.Model))
+or 
+
+// const patterns = [
+//   { field: 'code_inspector', pattern: new RegExp(this.searchValue?.code_inspector, 'i') },
+//   { field: 'name', pattern: new RegExp(this.searchValue?.name, 'i') }
+// ];
+
+const patterns = Object.keys(this.searchValue).map(key => {
+return { field: key, pattern: new RegExp(this.searchValue[key], 'i') };
+});
+
+this.listOfDisplayData = this.dataTable.filter((item: any) =>
+patterns.every(cond => cond.pattern.test(item[cond.field])) // AND operation (every)
+);
+
+
+	  
 
 //TODO filter data obj.array
 let beautyProducts = this.stateGroups_1.filter(d => d.names.some(cat => cat.id === 43));
