@@ -648,28 +648,8 @@ createTplModal(tplTitle: any, tplContent: any, tplFooter: any): void {
   }
  
 //TODO html
- <button nz-button nzType="primary" (click)="createTplModal(tplTitle, tplContent, tplFooter)">
-    <span>Template</span>
-  </button>
- 
-  <ng-template #tplContent let-params>
-    <div nz-row>
-      <div nz-col >
-        <label for="" >Select Missionssss</label>
-      </div>
-    </div>
-    <div nz-row>
-      <button nz-button (click)="this.modalRef?.close()">ok</button>
-    </div>
-  </ng-template>
- 
-  <ng-template #tplTitle>
-    <span>Title Template</span>
-  </ng-template>
- 
-  <ng-template #tplFooter let-params>
-    <p>ssssssssssssssssssssssssssss</p>
-  </ng-template>
+ ng-template #customFooter
+[nzFooter]="customFooter"
 </pre>
 </div>
    
