@@ -113,6 +113,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'QR_Code')">QR Code</button>
 	<button class="myButton" onclick="openCity(event, 'UPLOAD')">UPLOAD</button>
 	<button class="myButton" onclick="openCity(event, 'AntDesign')">AntDesign</button>
+	<button class="myButton" onclick="openCity(event, 'loading')">loading</button>
 </div>
   
   <!--<mark></mark>--->
@@ -585,6 +586,32 @@ const filteredData = listApprove.filter((item :any) => {
 </div>
 
 
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="loading" class="tabcontent">
+<pre>
+new ng g c loading
+	
+.loading {
+  position: absolute;
+  z-index: 99;
+  width: -webkit-fill-available;
+  height: -webkit-fill-available;
+  justify-items: center;
+  align-content: center;
+  background-color: #8080806e;
+}
+isActiveLoading:any = false
+app-loading *ngIf="isActiveLoading" class="loading"
+
+constructor(
+    private sss : AppComponent
+  ) { }
+use 
+thus.sss.isActiveLoading = true //start
+thus.sss.isActiveLoading = false //stop	
+</pre>
+</div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="Interval" class="tabcontent">
 <pre>
