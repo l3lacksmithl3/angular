@@ -1279,6 +1279,17 @@ router.post("/updateAt/", function (req, res, next) {
   );
 });
 </pre>
+
+<pre>
+	
+</pre>
+//TODO convert data image
+import { map } from 'rxjs/operators';	
+const url = await lastValueFrom(
+this.http.get(this.img.imgs[0].path, { responseType: 'blob' }).pipe(
+map((blob: Blob) => URL.createObjectURL(blob))
+)
+);
 </div>
 
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
