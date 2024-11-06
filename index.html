@@ -114,6 +114,7 @@ mark {
 	<button class="myButton" onclick="openCity(event, 'UPLOAD')">UPLOAD</button>
 	<button class="myButton" onclick="openCity(event, 'AntDesign')">AntDesign</button>
 	<button class="myButton" onclick="openCity(event, 'loading')">loading</button>
+	<button class="myButton" onclick="openCity(event, 'setAccess')">Access</button>
 </div>
   
   <!--<mark></mark>--->
@@ -628,7 +629,48 @@ setInterval(()=>{
 
 </pre>
 </div>
-	    
+
+<!--------------------------------------------------------------------------------------------------------------------------------------------->
+<div id="setAccess" class="tabcontent">
+<pre>
+//TODO 
+const labels = this.getLabelsByAccess(['view']);
+console.log(labels);
+	
+getLabelsByAccess(access: any) {
+    
+    //label
+    let label_admin = [
+      { link: "/admin/master", label: "Master", access: ["admin", "view"] },
+      { link: "/admin/master", label: "222", access: ["admin"] }
+    ];
+    let label_inspector = [
+      { link: "/admin/home", label: "Inspector", access: ["admin"] }
+    ];
+
+
+
+    let userAccess = new Set(access);
+
+    //filter
+    const filteredLabelAdmin = label_admin.filter((item: any) =>
+      item.access.some((role: any) => userAccess.has(role))
+    );
+
+
+    const filteredLabelInspector = label_inspector.filter((item: any) =>
+      item.access.some((role: any) => userAccess.has(role))
+    );
+    
+
+    //return
+    return {
+      label_admin: filteredLabelAdmin,
+      label_inspector: filteredLabelInspector
+    };
+  }
+</pre>
+</div>	    
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
 <div id="AntDesign" class="tabcontent">
 <pre>
