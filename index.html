@@ -710,6 +710,37 @@ createTplModal(tplTitle: any, tplContent: any, tplFooter: any): void {
     &lt;div&gt;Content 4&lt;/div&gt;
   &lt;/nz-col&gt;
 &lt;/nz-row&gt;
+
+
+//TODO table
+import { ScrollingModule } from '@angular/cdk/scrolling';
+imports: [ScrollingModule]
+
+&lt;cdk-virtual-scroll-viewport
+  itemSize="54"
+  class="virtual-scroll-container"
+  [style.height]="'400px'"
+&gt;
+  &lt;table class="ant-table"&gt;
+    &lt;thead class="ant-table-thead"&gt;
+      &lt;tr&gt;
+        &lt;th&gt;No.&lt;/th&gt;
+        &lt;th&gt;Product Name&lt;/th&gt;
+        &lt;th&gt;AMT Mat. Code&lt;/th&gt;
+        &lt;th&gt;Spec No.&lt;/th&gt;
+      &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody class="ant-table-tbody"&gt;
+      &lt;tr *cdkVirtualFor="let data of rowData" class="ant-table-row"&gt;
+        &lt;td&gt;{{ data.no }}&lt;/td&gt;
+        &lt;td&gt;{{ data.model }}&lt;/td&gt;
+        &lt;td&gt;{{ data.partsCode }}&lt;/td&gt;
+        &lt;td&gt;{{ data.partsSpec }}&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/tbody&gt;
+  &lt;/table&gt;
+&lt;/cdk-virtual-scroll-viewport&gt;
+
 </pre>
 
 </div>
