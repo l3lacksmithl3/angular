@@ -741,6 +741,22 @@ imports: [ScrollingModule]
   &lt;/table&gt;
 &lt;/cdk-virtual-scroll-viewport&gt;
 
+//TODO filter on table
+keyword:any = {}
+  listOfDisplayData: any
+  search(e:any) {
+    let searchValue :any = {}
+    searchValue[e] = this.keyword[e].trim()
+    const patterns = Object.keys(searchValue).map(key => {
+      return { field: key, pattern: new RegExp(searchValue[key], 'i') };
+    });
+    this.listOfDisplayData = this.rowData.filter((item: any) =>
+      patterns.every(cond => cond.pattern.test(item[cond.field])) // AND operation (every)
+    );
+  }
+
+input type="text" nz-input [(ngModel)]="keyword['no']" (keyup)="search('no')"
+
 </pre>
 
 </div>
