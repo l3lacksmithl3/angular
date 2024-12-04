@@ -645,41 +645,59 @@ setInterval(()=>{
 <div id="setAccess" class="tabcontent">
 <pre>
 //TODO 
-const labels = this.getLabelsByAccess(['view']);
-console.log(labels);
-	
- getLabelsByAccess(access: any[]) {
+ngOnInit() {
+    this.login = JSON.parse(`${localStorage.getItem("user-amt-sample-control")}`)
+    this.data = this.getLabelsByAccess(['user'])
+  }
+
+  getLabelsByAccess(access: any[]) {
+    let list: any = []
+    let userAccess = new Set(access);
 
     //label
-    let label_Admin = [
-      { link: "/admin/master", label: "Master management", access: ["admin"] },
-      { link: "/admin/user", label: "User management", access: ["admin"] }
-    ];
-    let label_SampleControl = [
-      { link: "/dashboard", label: "Dashboard", access: ["admin", "user"] },
-      { link: "/sample_control", label: "Sample Control System", access: ["admin", "user"] }
-    ];
-    let label_Download = [
-      { link: "/wi/control-master", label: "-WI Control master", access: ["admin", "user"] },
-      { link: "/wi/limit-sample", label: "-Wi Limit sample", access: ["admin", "user"] },
-    ];
+    list.push(
+      {
+        nzTitle: 'Admin',
+        nzIcon: 'appstore',
+        data: filterLabel([
+          { link: "/admin/master", label: "Master management", access: ["admin"] },
+          { link: "/admin/user", label: "User management", access: ["admin"] }
+        ])
+      }
+    )
 
-    let userAccess = new Set(access);
+    list.push(
+      {
+        nzTitle: 'Sample Control',
+        nzIcon: 'dashboard',
+        data: filterLabel([
+          { link: "/dashboard", label: "Dashboard", access: ["admin", "user"] },
+          { link: "/sample_control", label: "Sample Control System", access: ["admin", "user"] }
+        ])
+      }
+    )
+
+    list.push(
+      {
+        nzTitle: 'Download WI',
+        nzIcon: 'download',
+        data: filterLabel([
+          { link: "/wi/control-master", label: "-WI Control master", access: ["admin", "user"] },
+          { link: "/wi/limit-sample", label: "-Wi Limit sample", access: ["admin", "user"] },
+        ])
+      }
+    )
+
+    list = list.filter((e: any) => e.data.length != 0)
+
     function filterLabel(label: any) {
       return label.filter((item: any) =>
         item.access.some((role: any) => userAccess.has(role))
       );
     }
 
-    //return
-    return {
-      label_Admin: filterLabel(label_Admin),
-      label_SampleControl: filterLabel(label_SampleControl),
-      label_Download: filterLabel(label_Download)
-    };
-
+    return list
   }
-}
 </pre>
 </div>	    
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
