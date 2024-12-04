@@ -648,38 +648,38 @@ setInterval(()=>{
 const labels = this.getLabelsByAccess(['view']);
 console.log(labels);
 	
-getLabelsByAccess(access: any) {
-    
+ getLabelsByAccess(access: any[]) {
+
     //label
-    let label_admin = [
-      { link: "/admin/master", label: "Master", access: ["admin", "view"] },
-      { link: "/admin/master", label: "222", access: ["admin"] }
+    let label_Admin = [
+      { link: "/admin/master", label: "Master management", access: ["admin"] },
+      { link: "/admin/user", label: "User management", access: ["admin"] }
     ];
-    let label_inspector = [
-      { link: "/admin/home", label: "Inspector", access: ["admin"] }
+    let label_SampleControl = [
+      { link: "/dashboard", label: "Dashboard", access: ["admin", "user"] },
+      { link: "/sample_control", label: "Sample Control System", access: ["admin", "user"] }
     ];
-
-
+    let label_Download = [
+      { link: "/wi/control-master", label: "-WI Control master", access: ["admin", "user"] },
+      { link: "/wi/limit-sample", label: "-Wi Limit sample", access: ["admin", "user"] },
+    ];
 
     let userAccess = new Set(access);
-
-    //filter
-    const filteredLabelAdmin = label_admin.filter((item: any) =>
-      item.access.some((role: any) => userAccess.has(role))
-    );
-
-
-    const filteredLabelInspector = label_inspector.filter((item: any) =>
-      item.access.some((role: any) => userAccess.has(role))
-    );
-    
+    function filterLabel(label: any) {
+      return label.filter((item: any) =>
+        item.access.some((role: any) => userAccess.has(role))
+      );
+    }
 
     //return
     return {
-      label_admin: filteredLabelAdmin,
-      label_inspector: filteredLabelInspector
+      label_Admin: filterLabel(label_Admin),
+      label_SampleControl: filterLabel(label_SampleControl),
+      label_Download: filterLabel(label_Download)
     };
+
   }
+}
 </pre>
 </div>	    
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
