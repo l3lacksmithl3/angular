@@ -834,6 +834,34 @@ delete(data: any): Observable<any> {
     formData.append('file', renamedFile)
     const resFile = await lastValueFrom(this.create(formData))
   }
+
+
+//TODO
+
+ onFileChange(event: any): void {
+    const target: DataTransfer = <DataTransfer>(event.target);
+    if (target.files.length !== 1) {
+      alert('กรุณาเลือกไฟล์เพียงไฟล์เดียว');
+      return;
+    }
+
+    const reader: FileReader = new FileReader();
+    reader.onload = (e: any) => {
+      const binaryStr: string = e.target.result;
+      const workbook: XLSX.WorkBook = XLSX.read(binaryStr, { type: 'binary' });
+
+      // อ่านเฉพาะ Sheet แรก
+      const sheetName: string = workbook.SheetNames[0];
+      const sheet: XLSX.WorkSheet = workbook.Sheets[sheetName];
+
+      // แปลงข้อมูลใน Sheet เป็น JSON
+      let koo  = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+      console.log(koo);
+    };
+
+    reader.readAsBinaryString(target.files[0]);
+  }
+<input type="file" (change)="onFileChange($event)" accept=".xlsx, .xls" />	
 </pre>
 </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------->
