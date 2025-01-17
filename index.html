@@ -1442,6 +1442,25 @@ router.post("/updateAt/", function (req, res, next) {
     }
   );
 });
+
+router.post("/UpdateAdd", function (req, res, next) {
+  const payload = req.body;  
+  if (!payload._id) {
+    payload._id = new ObjectId(); 
+  }
+  route.findOneAndUpdate(
+    { _id: payload._id },
+    { $set: payload },
+    { upsert: true, new: true }, 
+    (err, result) => {
+      if (err) {
+        res.json(err);
+      } else {
+        res.json(result);
+      }
+    }
+  );
+});
 </pre>
 
 <pre>
