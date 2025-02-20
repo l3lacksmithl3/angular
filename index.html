@@ -362,7 +362,16 @@ readFileContent(file: File): Promise<string> {
 
 
 
+//TODO
+const replacements = {
+"{{reqNo}}": reqNo,
+"{{to_mail}}": to_mail,
+};
 
+new_data.body = Object.keys(replacements).reduce(
+(body, key) => body?.replaceAll(key, replacements[key]),
+new_data.body
+);
 
 
 </pre>
